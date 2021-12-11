@@ -19,9 +19,13 @@ public class TimeInvocationHandler implements InvocationHandler {
         log.info("TimeProxy 실행");
         long startTime = System.currentTimeMillis();
 
-        method.invoke(target,args); // 인자값으로 넘어온 메서드를 실행시키기 위해, 대상 객체와 인자값을
+        Object result = method.invoke(target, args);
+        // 인자값으로 넘어온 메서드를 실행시키기 위해, 대상 객체와 인자값을 넘어온 메서드에 넣어준다.
 
         long endTime = System.currentTimeMillis();
-        return null;
+
+        long resultTime = endTime - startTime;
+        log.info("TimeProxy 종료 resultTime={}",resultTime);
+        return result;
     }
 }
